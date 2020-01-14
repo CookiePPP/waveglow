@@ -86,7 +86,7 @@ class Mel2Samp(torch.utils.data.Dataset):
         return melspec
 
     def load_mel(self, filename):
-        melspec = torch.from_numpy(np.load(filename, allow_pickle=True))
+        melspec = torch.from_numpy(np.load(filename.replace(".wav",".npy"), allow_pickle=True))
         assert melspec.size(0) == self.stft.n_mel_channels, (
             'Mel dimension mismatch: given {}, expected {}'.format(
                 melspec.size(0), self.stft.n_mel_channels))
